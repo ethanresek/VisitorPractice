@@ -22,7 +22,9 @@ exposed)
 
 ## Implementation details
 
-- Visitor depends on **double-dispatch**. This means that method calls are resolved based on
+### Double-dispatch
+
+Visitor depends on **double-dispatch**. This means that method calls are resolved based on
 the runtime types of two objects, not just one. Consider the following code:
 
 `
@@ -30,12 +32,10 @@ interface Visitor {
 void visit(Circle c);
 void visit(Square s);
 }
-
 interface Shape {
 void accept(Visitor v);
 }
 `
-
 `
 class Circle implements Shape {
 void accept(Visitor v) {
@@ -55,9 +55,9 @@ shape.accept(visitor);
 shape.accept() uses Circle, the runtime type of Shape and Circle.accept() uses
 AreaCalculator, the runtime type of Visitor.
 
-- Three options for traversing the object structure: the object structure, the visitor, or a
-separate iterator
-  - Putting the traversal algo in the visitor will require duplicating the code in each concrete
-  visitor implementation, but it will allow for complex traversals that depend on the results of
-  the completed operations
-- 
+### Traversal
+
+There are three options for traversing the object structure: the object structure, the visitor, or a
+separate iterator. Putting the traversal algo in the visitor will require duplicating the code in each concrete
+visitor implementation, but it will allow for complex traversals that depend on the results of
+the completed operations.
