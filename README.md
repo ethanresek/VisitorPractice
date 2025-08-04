@@ -27,30 +27,31 @@ exposed)
 Visitor depends on **double-dispatch**. This means that method calls are resolved based on
 the runtime types of two objects, not just one. Consider the following code:
 
-`
+```
 interface Visitor {
 void visit(Circle c);
 void visit(Square s);
 }
+
 interface Shape {
 void accept(Visitor v);
 }
-`
-`
+```
+```
 class Circle implements Shape {
 void accept(Visitor v) {
 v.visit(this);
 }
 }
-`
+```
 
 In the following case:
 
-`
+```
 Shape shape = new Circle();
 Visitor visitor = new AreaCalculator();
 shape.accept(visitor);
-`
+```
 
 shape.accept() uses Circle, the runtime type of Shape and Circle.accept() uses
 AreaCalculator, the runtime type of Visitor.
