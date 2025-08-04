@@ -29,19 +29,19 @@ the runtime types of two objects, not just one. Consider the following code:
 
 ```
 interface Visitor {
-void visit(Circle c);
-void visit(Square s);
+  void visit(Circle c);
+  void visit(Square s);
 }
 
 interface Shape {
-void accept(Visitor v);
+  void accept(Visitor v);
 }
 ```
 ```
 class Circle implements Shape {
-void accept(Visitor v) {
-v.visit(this);
-}
+  void accept(Visitor v) {
+    v.visit(this);
+  }
 }
 ```
 
